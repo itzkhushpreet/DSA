@@ -404,30 +404,30 @@ using namespace std;
 //     return 0;
 // }
  
-// for moving the non zero elements in front and all the zero elements at the end of the array
-int main(){
-    vector<int>arr={1,0,1,3,12};
-    int n=arr.size();
-    int j=-1;
-    for(int i=0;i<n;i++){
-        if(arr[i]==0){
-            j=i;
-            break;
-        }
-    }
-    for(int i=j+1;i<n;i++){
-        if(arr[i]!=0){
-            swap(arr[i],arr[j]);
-            j++;
-        }
-    }
-    for(int x:arr){
-        cout<<x<<" ";
+// // for moving the non zero elements in front and all the zero elements at the end of the array
+// int main(){
+//     vector<int>arr={1,0,1,3,12};
+//     int n=arr.size();
+//     int j=-1;
+//     for(int i=0;i<n;i++){
+//         if(arr[i]==0){
+//             j=i;
+//             break;
+//         }
+//     }
+//     for(int i=j+1;i<n;i++){
+//         if(arr[i]!=0){
+//             swap(arr[i],arr[j]);
+//             j++;
+//         }
+//     }
+//     for(int x:arr){
+//         cout<<x<<" ";
 
-    }
-    return 0;
+//     }
+//     return 0;
 
-}
+//}
 // int main() {
 //     vector<int> arr = {1,0,1,3,12};
 //     int j = 0;
@@ -442,6 +442,174 @@ int main(){
 //     for (int x : arr)
 //         cout << x << " ";
 // }
+// int main(){
+//     vector<int>a={1,1,2,3,4,5};
+//     vector<int>b={2,3,4,4,5,6};
+//     vector<int>Unionarr;
+//     int i=0;
+//     int j=0;
+//     int n1=a.size();
+//    int  n2=b.size();
+//     while(i<n1 && j<n2){
+//         if(a[i]<=b[j]){
+//             if(Unionarr.size()==0 || Unionarr.back()!=a[i]){
+//                 Unionarr.push_back(a[i]);
+//             }
+//             i++;
+//         }else{
+//             if(Unionarr.size()==0 || Unionarr.back()!=b[j]){
+//                 Unionarr.push_back(b[j]);
+
+//         }
+//         j++;
+       
+//     }
+// }
+//     while(j<n2){
+//         if(Unionarr.size()==0 || Unionarr.back()!=b[j]){
+//                 Unionarr.push_back(b[j]);
+
+//         }
+//         j++;
+
+//     }
+//     while(i<n1){
+//          if(Unionarr.size()==0 || Unionarr.back()!=a[i]){
+//                 Unionarr.push_back(a[i]);
+//             }
+//             i++;
+
+//     }
+//     for(int x:Unionarr){
+//         cout<<x<<' ';
+//     }
+//     // cout<<Unionarr<<" ";
+//     return 0;
+// }
+// for returning the missing number in an array
+// this is one of the second optimal approach to that
+// bettter option was hashing but it would have taken space complexity 0(n)
+
+// class Solution {
+// public:
+//     int missingNumber(vector<int>& nums) {
+//         int xor1=0 ,xor2=0;
+//         int N=nums.size();
+//         // int n=N-1;
+//         // for(int i=0;i<N;i++){
+//         //     xor2=xor2^nums[i];
+//         //     xor1=xor1^(i+1);
+//         // }
+//         for (int i=0;i<=N;i++){
+//             xor1=xor1^i;
+//         }
+//         for(int i=0;i<N;i++){
+//             xor2=xor2^nums[i];
+//         }
+//         // xor1=xor1^N;
+//         return xor1^xor2;
+//     }
+// };
+// 1st optimal aproach using the sum of first n natural number
+
+// int main(){
+//     vector<int>arr={1,2,4,5};
+//     int n=arr.size();
+    
+//     int sum=n*(n+1)/2;
+//     int s2=0;
+//     for(int i=0;i<n-1;i++){
+//         s2+=arr[i];
+//     }
+//     cout<<sum<<endl;
+//     cout<<s2<<endl;
+//     int difference=sum-s2;
+//     cout<<difference<<endl;
+
+// }
+
+// vector<int> twosum(vector<int>&arr,int target){
+//     // vector<int>arr;
+//     //  target =9;
+//     sort(arr.begin(),arr.end());
+//     int left=0;
+//     int right=(arr.size()-1);
+//     while(left<right){
+//         int sum=arr[left]+arr[right];
+//         if(sum==target){
+//             return {left,right};
+//         }
+//         else if(sum<target){
+//             left++;
+//         }
+//         else{
+//             right--;
+//         }
+
+//     }
+//     return {};
+    
+// }
+// int main(){
+//     vector<int>arr={2,7,11,15};
+//     // cout<<twosum(arr)<<" ";
+//      vector<int> ans = twosum(arr, 9);
+
+//     if (!ans.empty()) {
+//         cout << ans[0] << " " << ans[1];
+//     }
+//     else {
+//         cout << "No pair found";
+//     }
+// }
+// kadagnes algorithum
+// to find the largest subarrat  to return the required target
+// it will retrun sum
+// long long kadagnes_algo(vector<int>&arr){
+//     // vector<int>arr;
+//     long long sum=0;
+//     long long maxi=INT_MIN;
+//     for(int i =0;i<arr.size();i++){
+//         sum+=arr[i];
+//         if(sum>maxi){
+//             maxi=sum;
+//         }
+//         if(sum<0){
+//             sum=0;
+//         }
+//     }
+//     return maxi;
+// }
+// int main(){
+//     vector<int>arr={-2,-3,-10,-2,-7,-4};
+//     long long ans=kadagnes_algo(arr);
+//     cout<<ans<<endl;
+
+// }
+vector<int>kadagnes_algooo(vector<int>&arr){
+    vector<int >arr;
+    long long sum=0;
+    int maxi=INT_MIN;
+    for(int i=0;i<arr.size();i++){
+        sum+=arr[i];
+        if(sum>maxi){
+            maxi=sum;
+        }
+        if(sum<0){
+            sum=0;
+        }
+    }
+    return maxi;
+}
+int main(){
+    vector<int>arr={2, 3, 5, -2, 7, -4};
+    vector<int>ans=kadagnes_algooo(arr);
+    cout<<ans<<endl;
+}
+
+
+
+
 
    
 
