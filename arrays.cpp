@@ -586,27 +586,223 @@ using namespace std;
 //     cout<<ans<<endl;
 
 // }
-vector<int>kadagnes_algooo(vector<int>&arr){
-    vector<int >arr;
-    long long sum=0;
-    int maxi=INT_MIN;
-    for(int i=0;i<arr.size();i++){
-        sum+=arr[i];
-        if(sum>maxi){
-            maxi=sum;
-        }
-        if(sum<0){
-            sum=0;
-        }
-    }
-    return maxi;
-}
-int main(){
-    vector<int>arr={2, 3, 5, -2, 7, -4};
-    vector<int>ans=kadagnes_algooo(arr);
-    cout<<ans<<endl;
-}
+// vector<int>kadagnes_algooo(vector<int>&arr){
+//     vector<int >arr;
+//     long long sum=0;
+//     int maxi=INT_MIN;
+//     for(int i=0;i<arr.size();i++){
+//         sum+=arr[i];
+//         if(sum>maxi){
+//             maxi=sum;
+//         }
+//         if(sum<0){
+//             sum=0;
+//         }
+//     }
+//     return maxi;
+// }
+// int main(){
+//     vector<int>arr={2, 3, 5, -2, 7, -4};
+//     vector<int>ans=kadagnes_algooo(arr);
+//     cout<<ans<<endl;
+// }
+// aleternatie sign rearrangement array
+// class Solution {
+// public:
+//     vector<int> rearrangeArray(vector<int>& nums) {
+//         int n=nums.size();
+//         vector<int>ans(n,0);
+//         int posidx=0,negidx=1;
+//         for(int i=0;i<n;i++){
+//             if(nums[i]<0){
+//                 ans[negidx]=nums[i];
+//                 negidx+=2;
 
+//             }
+//             else{
+//                 ans[posidx]=nums[i];
+//                 posidx+=2;
+//             }
+//         }
+//         return ans;
+
+        
+//     }
+// };
+// vector<int>leaderproblem(vector<int>&arr){
+//     vector<int>leaders;
+//     int max=arr[arr.size()-1];
+//     leaders.push_back(max);
+//     for(int i=arr.size()-2;i>=0;i--){
+//         if(arr[i]>max){
+//             max=arr[i];
+//             leaders.push_back(arr[i]);
+//         }
+//         // else{
+//         //     return {};
+//         // }
+//     }
+//     reverse(leaders.begin(),leaders.end());
+//     return leaders;
+// }
+
+// int main(){
+//     vector<int>temp={1,2,5,3,1,2};
+//     vector<int> ans=leaderproblem(temp);
+//     // cout<<ans<<endl;
+//     for(int x:ans){
+//         cout<<x<<" ";
+//     }
+// }
+// the matrix zero 
+// brute force approach
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
+
+//     int col[m] = {0};
+//     int row[n] = {0};
+
+//     for (int i = 0; i < n; i++) {
+//         for (int j = 0; j < m; j++) {
+//             if (matrix[i][j] == 0) {
+//                 row[i] = 1;
+//                 col[j] = 1;
+//             }
+//         }
+//     }
+
+//     for (int i = 0; i < n; i++) {
+//         for (int j = 0; j < m; j++) {
+//             if (row[i] || col[j]) {
+//                 matrix[i][j] = 0;
+//             }
+//         }
+//     }
+
+//     return matrix;
+// }
+
+// a better approach for it
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
+//     int col[m] = {0};
+//     int row[n] = {0};
+
+//     // Mark rows and columns that contain 0
+//     for (int i = 0; i < n; i++) {
+//         for (int j = 0; j < m; j++) {
+//             if (matrix[i][j] == 0) {
+//                 row[i] = 1;
+//                 col[j] = 1;
+//             }
+//         }
+//     }
+
+//     // Set matrix elements to 0 if their row or column is marked
+//     for (int i = 0; i < n; i++) {
+//         for (int j = 0; j < m; j++) {
+//             if (row[i] || col[j]) {
+//                 matrix[i][j] = 0;
+//             }
+//         }
+//     }
+
+//     return matrix;
+// }
+// the optimal aprroach
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
+
+//     int col0 = 1;
+
+//     // Step 1: Mark rows and columns
+//     for (int i = 0; i < n; i++) {
+//         for (int j = 0; j < m; j++) {
+//             if (matrix[i][j] == 0) {
+
+//                 // mark the i-th row
+//                 matrix[i][0] = 0;
+
+//                 // mark the j-th column
+//                 if (j != 0)
+//                     matrix[0][j] = 0;
+//                 else
+//                     col0 = 0;
+//             }
+//         }
+//     }
+
+//     // Step 2: Update the matrix except first row & col
+//     for (int i = 1; i < n; i++) {
+//         for (int j = 1; j < m; j++) {
+//             if (matrix[i][j] != 0) {
+//                 if (matrix[0][j] == 0 || matrix[i][0] == 0) {
+//                     matrix[i][j] = 0;
+//                 }
+//             }
+//         }
+//     }
+
+//     // Step 3: Update first row
+//     if (matrix[0][0] == 0) {
+//         for (int j = 0; j < m; j++) {
+//             matrix[0][j] = 0;
+//         }
+//     }
+
+//     // Step 4: Update first column
+//     if (col0 == 0) {
+//         for (int i = 0; i < n; i++) {
+//             matrix[i][0] = 0;
+//         }
+//     }
+
+//     return matrix;
+// }
+// a rough approach to subarray sum equals question
+// void <int>subarray(&arr,int target){
+//     vector<int>arr;
+//     int n=arr.size();
+//     int sum=0;
+//     int st=arr[0];
+//     int end=arr[n-1];
+//     for(int i=0;i<n;i++){
+//         sum+=arr[i];
+//         if(sum>target){
+//             st++;
+//             end++;
+//         }
+//         else if(sum<target){
+//             end++;
+//         }
+//         else if(sum==target){
+//             return arr[i];
+//         }
+
+
+//     }
+// }
+// subarray sum equals k
+int main(){
+    vector<int>arr={1,1,1};
+    int count=0;
+    int target=2;
+    int sum=0;
+    for(int i=0;i<arr.size()-1;i++){
+     sum=sum+arr[i];
+    }
+    if(sum==target){
+        count+=1;
+    }
+    cout<<count<<endl;
+
+}
 
 
 
