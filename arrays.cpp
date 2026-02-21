@@ -789,20 +789,93 @@ using namespace std;
 //     }
 // }
 // subarray sum equals k
-int main(){
-    vector<int>arr={1,1,1};
-    int count=0;
-    int target=2;
-    int sum=0;
-    for(int i=0;i<arr.size()-1;i++){
-     sum=sum+arr[i];
+// wrong approach
+// int main(){
+//     vector<int>arr={1,1,1};
+//     int count=0;
+//     int target=2;
+//     int sum=0;
+//     for(int i=0;i<arr.size()-1;i++){
+//      sum=sum+arr[i];
+//     }
+//     if(sum==target){
+//         count+=1;
+//     }
+//     cout<<count<<endl;
+
+// }
+// pascal triangle
+// vector<int>generaterow(int row){
+//     long long ans=1;
+//     vector<int>ansrow;
+//     ansrow.push_back(1);
+//     for(int col=1;col<row;col++){
+//         ans=ans*(row-col);
+//         ans=ans/(col);
+//         ansrow.push_back(ans);
+//     }
+// }
+// vector<vector<int>>pascalTriangle(int N){
+//     vector<vector<int>>ans;
+//     for(int i=1;i<N;i++){
+//         ans.push_back(generaterow(i));
+//     }
+// return ans;
+// }
+// leetcode version
+// class Solution {
+// public:
+//     // vector<vector<int>> generate(int numRows) {
+//     vector<int> generaterow(int row) {
+//         long long ans = 1;
+//         vector<int> ansrow;
+//         ansrow.push_back(1);
+//         for (int col = 1; col < row; col++) {
+//             ans = ans * (row - col);
+//             ans = ans / (col);
+//             ansrow.push_back(ans);
+//         }
+//         return ansrow;
+//     }
+//     vector<vector<int>> generate(int numRows) {
+//         vector<vector<int>> ans;
+//         for (int i = 1; i <=numRows; i++) {
+//             ans.push_back(generaterow(i));
+//         }
+//         return ans;
+//     }
+//     // }
+// };
+// largest subbarry wiht sum k
+vector<vector<int>>largest_array(&arr){
+    vector<int>arr;
+    int right=0;
+    int left=0;
+    long long sum=arr[0];
+    int max_len=0;
+    // for(int i=0;i<arr.size();i++){
+    while(right<n){
+        while(left<=right && sum>0){
+        sum-=arr[left];
+        left ++;
+        }
+        if(sum==0){
+            max_len=max(max_len,right-left +1);
+        }
+        while(right<n){
+            right++;
+            sum +=arr[right]
+        }
     }
-    if(sum==target){
-        count+=1;
-    }
-    cout<<count<<endl;
 
 }
+int main(){
+    vector<int>ans={15, -2, 2, -8, 1, 7, 10, 23};
+    cout<largest_array(ans)<<endl;
+
+}
+
+
 
 
 
