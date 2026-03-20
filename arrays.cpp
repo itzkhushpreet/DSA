@@ -847,33 +847,105 @@ using namespace std;
 //     // }
 // };
 // largest subbarry wiht sum k
-vector<vector<int>>largest_array(&arr){
-    vector<int>arr;
-    int right=0;
-    int left=0;
-    long long sum=arr[0];
-    int max_len=0;
-    // for(int i=0;i<arr.size();i++){
-    while(right<n){
-        while(left<=right && sum>0){
-        sum-=arr[left];
-        left ++;
-        }
-        if(sum==0){
-            max_len=max(max_len,right-left +1);
-        }
-        while(right<n){
-            right++;
-            sum +=arr[right]
-        }
-    }
+// vector<vector<int>>largest_array(&arr){
+//     vector<int>arr;
+//     int right=0;
+//     int left=0;
+//     long long sum=arr[0];
+//     int max_len=0;
+//     // for(int i=0;i<arr.size();i++){
+//     while(right<n){
+//         while(left<=right && sum>0){
+//         sum-=arr[left];
+//         left ++;
+//         }
+//         if(sum==0){
+//             max_len=max(max_len,right-left +1);
+//         }
+//         while(right<n){
+//             right++;
+//             sum +=arr[right];
+//         }
+//     }
 
+// }
+// int main(){
+//     vector<int>ans={15, -2, 2, -8, 1, 7, 10, 23};
+//     cout<largest_array(ans)<<endl;
+
+// }
+// to coutn the su barrya with xor as k
+// int subarraysWithXorK(vector<int>& arr, int k) {
+//     unordered_map<int, int> mp;
+//     int xr = 0;
+//     int cnt = 0;
+//     mp[xr]++;
+//     for(int i=0;i<arr.size();i++){
+//         xr=xr^arr[i];
+//         int x=xr^k;
+//         cnt+=mpp[x];
+//         mp[xr]++;
+//     }
+//     return cnt;
+// }
+// to find the repeating and missing number
+// pehla missing da km kriye
+// vector<int>missing(&arr){
+// int missing(const vector<int>& arr){
+//     int n=arr.size();
+//     int xor1=0;
+//     for(int i=0;i<n;i++){
+//         xor1=xor^i;
+//     }
+//     int xor2=0;
+//     for(int i=0;i<n;i++){
+//         xor2=xor^arr[i];
+//     }
+//     int missing=xor1^xor2;
+//     return missing;
+// }
+// int occurence(const vector<int>& arr){
+//     int n=arr.size();
+//     int hash[6]={0};
+//     for(int i=0;i<n;i++){
+//         hash[arr[i]]+=1;
+//     }
+//     if(hash[arr[i]]>1){
+//         occurence=arr[i];
+//     }
+//     return occurence;
+// }
+// int main(){
+//     vector<int>temp={3,5,4,1,1};
+//     cout<<occurence(temp);
+//     cout<<missing(temp);
+// }
+// logic is somehwere wrong
+// we can do this only using hashing
+pair<int,int> findMissingRepeating(const vector<int>& arr) {
+    int n =arr.size();
+    int repeating=-1;
+    int missing =-1;
+    int freq[n+1]={0};
+    for(int i =0;i<n;i++){
+        freq[arr[i]]++;
+    }
+    for(int i=1;i<n;i++){
+        if (freq[i]==0){
+            missing=i;
+        }
+        else if( freq[i]>1){
+             repeating=i;
+        }
+
+    }
+    return {missing,repeating};
 }
 int main(){
-    vector<int>ans={15, -2, 2, -8, 1, 7, 10, 23};
-    cout<largest_array(ans)<<endl;
-
+    vector<int>temp={3,5,4,1,1};
+    cout<<findMissingRepeating(temp);
 }
+
 
 
 
