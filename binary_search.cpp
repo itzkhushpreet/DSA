@@ -219,77 +219,117 @@ using namespace std;
 //     }
 // };
 // Book allocaation problem
-int calculate_students(vector<int> &arr,int mid){
-    int pages=0;
-    int students=1;
+// int calculate_students(vector<int> &arr,int mid){
+//     int pages=0;
+//     int students=1;
+//     for(int i=0;i<arr.size();i++){
+//         if(arr[i]+pages>mid){
+//             students++;
+//             pages=arr[i];
+//         }
+//         else{
+//             pages+=arr[i];
+//         }
+//     }
+//     return students;
+// }
+// int bk_allocation(vector<int>&arr,int m){
+//     int low=*max_element(arr.begin(),arr.end());
+//     int n=arr.size();
+//     int high=accumulate(arr.begin(),arr.end(),0);
+//     int ans=-1;
+//     if(m>n)return -1;
+//     while(low<=high){
+//         int mid=(low+high)/2;
+//         int book=calculate_students(arr,mid);
+//         if(book>m){
+//             low=mid+1;
+//         }
+//         else{
+//             ans=mid;
+//             high=mid-1;
+//         }
+//     }
+//     return ans;
+// }
+// int main(){
+//     vector<int>arr={12,34,67,90};
+//     int m=2;
+//     int ans=bk_allocation(arr,m);
+//     cout<<ans<<endl;
+// }
+// // split array quesiton
+// class Solution {
+// public:
+//     int cnt_subarrays(vector<int> &arr,int mid){
+//         int cnt=1;
+//         int sum=0;
+//         for(int i=0;i<arr.size();i++){
+//             if(sum+arr[i]>mid){
+//                 cnt++;
+//                 sum=arr[i];
+//             }
+//             else{
+//                 sum+=arr[i];
+//             }
+//         }
+//         return cnt;
+//     }
+//     int splitArray(vector<int>& nums, int k) {
+//         int low=*max_element(nums.begin(),nums.end());
+//         int high=accumulate(nums.begin(),nums.end(),0);
+//         int ans=0;
+//         while(low<=high){
+//             int mid=(low+high)/2;
+//             int required=cnt_subarrays(nums,mid);
+//             if(required<=k){
+//                 ans=mid;
+//                 high=mid-1;
+//             }
+//             else{
+//                 low=mid+1;
+//             }
+//         }
+//         return ans;
+//     }
+// };
+// painters problem
+int countPainter(vector<int> &arr, int time){
+    int cnt=1;
+    int currentwork=0;
     for(int i=0;i<arr.size();i++){
-        if(arr[i]+pages>mid){
-            students++;
-            pages=arr[i];
+        if(currentwork+arr[i]<=time){
+            currentwork+=arr[i];
         }
         else{
-            pages+=arr[i];
+            cnt++;
+            currentwork=arr[i];
         }
     }
-    return students;
+    return cnt;
 }
-int bk_allocation(vector<int>&arr,int m){
+int findLargestmindata(vector<int> &arr, int k){
     int low=*max_element(arr.begin(),arr.end());
-    int n=arr.size();
     int high=accumulate(arr.begin(),arr.end(),0);
-    int ans=-1;
-    if(m>n)return -1;
+    int ans=high;
     while(low<=high){
         int mid=(low+high)/2;
-        int book=calculate_students(arr,mid);
-        if(book>m){
-            low=mid+1;
-        }
-        else{
+        int numberofPainters=countPainter(arr,mid);
+        if(numberofPainters<k){
             ans=mid;
             high=mid-1;
+
+        }
+        else{
+            low=mid+1;
         }
     }
     return ans;
 }
+// HERE 10 IS NUMBER OF PAINTERS
 int main(){
-    vector<int>arr={12,34,67,90};
-    int m=2;
-    int ans=bk_allocation(arr,m);
-    cout<<ans<<endl;
+    vector<int>arr={1,8,11,3};
+    int result=findLargestmindata(arr,10);
+    cout<<result<<endl;
+    cout<<result%10000003<<endl;
 }
-// split array quesiton
-class Solution {
-public:
-    int cnt_subarrays(vector<int> &arr,int mid){
-        int cnt=1;
-        int sum=0;
-        for(int i=0;i<arr.size();i++){
-            if(sum+arr[i]>mid){
-                cnt++;
-                sum=arr[i];
-            }
-            else{
-                sum+=arr[i];
-            }
-        }
-        return cnt;
-    }
-    int splitArray(vector<int>& nums, int k) {
-        int low=*max_element(nums.begin(),nums.end());
-        int high=accumulate(nums.begin(),nums.end(),0);
-        int ans=0;
-        while(low<=high){
-            int mid=(low+high)/2;
-            int required=cnt_subarrays(nums,mid);
-            if(required<=k){
-                ans=mid;
-                high=mid-1;
-            }
-            else{
-                low=mid+1;
-            }
-        }
-        return ans;
-    }
-};
